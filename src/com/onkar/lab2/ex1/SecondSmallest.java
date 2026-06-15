@@ -39,7 +39,7 @@ public class SecondSmallest {
 			arr[i] = n;
 		}
 		
-		System.out.println("Second Highest Number: " + SecondSmallest.secondSmallestNumber(arr));
+		System.out.println("Second Smallest Number: " + SecondSmallest.secondSmallestNumber(arr));
 		
 		sc.close();
 	}
