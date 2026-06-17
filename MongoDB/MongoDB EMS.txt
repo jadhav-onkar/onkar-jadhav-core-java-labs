@@ -245,6 +245,115 @@ Q31. db.projects.find({
     })
 
 
+Q32. db.employees.find({
+  	"role.level": { $gte: 7}
+    })
+
+
+Q33. db.employees.find({
+  	"address.city": "Bangalore"
+    })
+
+
+Q34. db.employees.find({
+  	$and: [
+  	  { "address.state": "Karnataka" },
+  	  { "role.level": { $lt: 5 }}
+  	]
+    })
+
+
+Q35. db.projects.find({
+  	team: { $elemMatch: { projectRole: "Team Lead" } }
+    }) 
+
+
+Q36. db.projects.find({
+  	"team.0.projectRole": "Project Manager"
+    })
+
+
+Q37. db.employees.find({
+  	lastName: { $regex: "^S"}
+    })
+
+
+Q38. db.projects.find({
+  	name: { $regex: "Portal" }
+    })
+
+
+Q39. db.employees.find({
+  	email: { $regex: "@acme.com$" }
+    })
+
+
+Q40. db.employees.updateOne({
+  	employeeId: "EMP004"
+	},{
+  	$set: { status: "ACTIVE" } 
+    })
+
+
+Q41. db.employees.updateMany({
+  	status: "ACTIVE",
+  	"department.name": "Engineering"
+	},{
+  	$mul: { salary: 1.10}
+    })
+
+
+Q42. db.employees.updateOne({
+  	employeeId: "EMP008"
+	},{
+  	$addToSet: {
+  	  skills: "Tally"
+  	}
+    })
+
+
+Q43. db.employees.updateOne({
+  	employeeId: "EMP008"
+	},{
+	$pull: {
+    	   skills: "Tally"
+  	}
+    })
+
+
+Q44. db.projects.updateOne(
+  	{ projectId: "PRJ005" },
+  	{
+  	  $set: {
+  	    status: "ACTIVE",
+  	    "metadata.updatedAt": new Date()
+  	  }
+  	}
+    )
+
+
+Q45. db.projects.updateOne({
+  	projectId: "PRJ002"
+	},{
+  	$push: {
+  	  team: {
+  	    employeeId: "EMP002",
+  	    name: "Arjun Mehta",
+  	    projectRole: "Backend Engineer",
+  	    assignedDate: new Date()
+  	  }
+  	}
+    })
+
+
+Q46. db.departments.updateMany({
+  	name: "Engineering"
+        },{
+  	$inc: {
+  	  headCount: 1
+  	}
+    })
+
 
 
 
