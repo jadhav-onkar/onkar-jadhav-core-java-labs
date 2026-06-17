@@ -1,16 +1,21 @@
 Q1. show collections
 
+
 Q2. db.employees.countDocuments()
+
 
 Q3. db.employees.countDocuments()
     db.roles.countDocuments()
     db.projects.countDocuments()
     db.departments.countDocuments()
 
+
 Q4. db.departments.find().pretty()
+
 
 Q5. db.departments.drop()
     db.createCollection("departments")
+
 
 Q6. db.departments.insertOne({
   	code: "Legal",
@@ -21,6 +26,7 @@ Q6. db.departments.insertOne({
   	isActive: true,
   	tags: ["legal", "compliance", "admin"]
      }) 
+
 
 Q7. db.employees.insertOne({
   	employeeId: "EMP009",
@@ -51,6 +57,7 @@ Q7. db.employees.insertOne({
   	}
      })
 
+
 Q8. db.roles.insertMany([
   	{
   	  title: "DevOps Engineer",
@@ -73,7 +80,6 @@ Q8. db.roles.insertMany([
   	  requiredSkills: []
   	}
     ])
-
 
 
 Q9. db.projects.insertOne({
@@ -99,6 +105,7 @@ Q10. db.employees.find({
   	status: "ACTIVE"
     })
 
+
 Q11. db.employees.find({
   	status: "ACTIVE"
 	},
@@ -111,6 +118,7 @@ Q11. db.employees.find({
   	_id: 0
     })
 
+
 Q12. db.employees.find({
   	employeeId: "EMP006"
     })
@@ -119,6 +127,7 @@ Q12. db.employees.find({
 Q13. db.employees.find({
   	employeeId: "EMP006"
      })
+
 
 Q14. db.projects.find({
   	status: "ACTIVE"
@@ -130,20 +139,113 @@ Q14. db.projects.find({
   	priority: 1
     })
 
+
 Q15. db.roles.find({
   	isManagement: true
      })
+
 
 Q16. db.departments.find({
   	isActive: false
      })
 
+
 Q17. db.employees.find().sort({hireDate: 1}).limit(3)
+
 
 Q18. db.projects.find().sort({
   	priority: -1,
   	name: 1
      })
+
+
+19. db.employees.find({
+  	salary: {
+  	  $gte: 50000,
+  	  $lte: 100000
+  	}
+    })
+
+
+Q20. db.roles.find({
+  	level: {
+  	  $gte: 7
+  	}
+    })
+
+
+Q21. db.employees.find({
+  	status: {
+  	  $ne: "TERMINATED"
+  	}
+     })
+
+
+Q22. db.employees.find({
+  	$and:[
+  	  {"department.name": "Engineering"},
+  	  {salary: {
+  	    $gt: 90000
+  	  }}
+  	]
+     }) 
+
+
+Q23. db.employees.find({
+  	$and:[
+  	  {"department.name": "Engineering"},
+  	  {salary: {
+  	    $gt: 90000
+  	  }}]
+    })
+
+
+Q24. db.employees.find({
+  	status: { $in: ["ON_LEAVE", "TERMINATED"]}
+    })
+
+
+Q25. db.projects.find({
+  	priority: { $in: ["HIGH", "CRITICAL"] },
+  	status: "ACTIVE"
+    })
+
+
+Q26. db.departments.find({
+  	$or: [
+  	  { headCount: { $lt: 10 }},
+  	  { headCount: { $gt: 20 }}
+  	]
+    })
+
+
+Q27. db.employees.find({
+  	skills: "Docker"
+    })
+
+
+
+Q28. db.employees.find({
+  	skills: { $all: ["Java", "Kubernetes"] }
+    })
+
+
+Q29. db.employees.find({
+  	skills: { $in: ["SAP", "Tally", "Excel"]}
+    })
+
+
+Q30. db.projects.find({
+  	tags: "infra"
+    })
+
+
+Q31. db.projects.find({
+  	team: { $size: 3 }
+    })
+
+
+
 
 
 
