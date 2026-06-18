@@ -355,6 +355,42 @@ Q46. db.departments.updateMany({
     })
 
 
+Q47. db.employees.deleteOne({
+  	employeeId: "EMP008"
+    })
+
+
+Q48. db.projects.deleteMany({
+  	status: "COMPLETED"
+    })
+
+
+Q49. db.departments.deleteOne({
+  	isActive: false
+    })
+
+
+Q50. db.employees.createIndex(
+  	{ email: 1 },
+  	{ unique: true }
+    )
+
+    MongoServerError: E11000 duplicate key error collection: ibm-ems.employees index: 
+    email_1 dup key: { email:"sanjay.gupta@acme.com" }
+
+
+Q51. db.employees.createIndex({
+  	"department.code": 1,
+  	salary: -1
+    })
+
+
+Q52. db.employees.getIndexes()
+     db.employees.dropIndex("department.code_1_salary_-1")
+
+
+
+
 
 
 
