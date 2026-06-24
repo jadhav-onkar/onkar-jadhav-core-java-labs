@@ -390,7 +390,119 @@ Q52. db.employees.getIndexes()
 
 
 
+Q53. db.employees.aggregate([
+  	{ 
+  	  $group: {
+  	  	_id: "$department.name",
+  	    count: { $sum: 1 }
+  	 } 
+  	}
+    ])
 
+
+Q54. db.employees.aggregate([
+  	{
+  	  $group: {
+  	    _id: "$department.name",
+  	    avgSalary: {
+  	      $avg: "$salary"
+  	    }
+  	  }
+  	},
+  	{
+  	  $project: {
+  	    _id: 0,
+  	    "department": "$_id",
+  	    avgSalary: {
+  	      $round: ["$avgSalary", 2]
+  	    }
+  	  }
+  	},
+  	{
+  	  $sort: { avgSalary: -1 }
+  	}
+    ])
+
+
+Q55. db.employees.aggregate([
+  	{
+  	  $sort: {
+  	    "department.name": 1,
+  	    salary: -1
+  	  }
+  	},
+  	{
+  	  $group: {
+  	    _id: "$department.name",
+  	    firstName: { $first: "$firstName" },
+  	    lastName: { $first: "$lastName" },
+  	    salary: { $first: "$salary" }
+  	  }
+  	},
+  	{
+  	  $project: {
+  	    _id: 0,
+  	    name: {
+  	      $concat: ["$firstName", " ", "lastName"]
+  	    },
+  	    department: "$_id",
+  	    salary: {
+  	      $round: ["$salary", 2]
+  	    }    
+  	  }
+  	}
+    ])
+
+
+Q56. db.projects.aggregate([
+  	{
+  	  $match: {
+  	    status: "ACTIVE"
+  	  }
+  	},
+  	{
+  	  $project: {
+  	    _id: 0,
+  	    name: 1,
+  	    status: 1,
+  	    teamSize: { $size: "$team" }
+  	  }
+  	},
+  	{
+  	  $sort: { teamSize: -1 }
+  	}
+    ])
+
+
+Q57. db.employees.aggregate([
+  	{
+  	  $match:{
+  	    status: "ACTIVE"
+  	  }
+  	},
+  	{
+  	  $group: {
+  	    _id: "$role.title",
+  	    count: { $sum: 1 },
+  	    avgSalary: {
+  	      $avg: "$salary"
+  	    }
+  	  }
+  	},
+  	{
+  	  $project: {
+  	    _id: 0,
+  	    role: "$_id",
+  	    avgSalary: {
+  	      $round: ["$avgSalary", 2]
+  	    },
+  	    count: "$count"
+  	  }
+  	},
+  	{
+  	  $sort: { count: -1 }
+  	}
+    ])	
 
 
 
