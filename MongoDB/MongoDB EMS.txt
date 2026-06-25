@@ -505,6 +505,23 @@ Q57. db.employees.aggregate([
     ])	
 
 
+Q58. db.employees.find({
+  	"address.street": { $exists: true },
+  	"phone": { $exists: false }
+    })
+
+
+Q59. db.employees.find({
+  	"salary": { $type: 'decimal' }
+    })
+
+
+Q60. db.employees.distinct("status")
+     db.projects.distinct("priority")
+     db.employees.distinct("address.city")
+
+
+
 
 
 
